@@ -21,3 +21,11 @@ A lightweight Windows 11 **PyQt6** desktop tactical HUD and **Arduino IDE** seri
 1. **Install Python Dependencies:**
    ```bash
    pip install PyQt6 pyserial
+
+   ## Reverse-Engineering & Customizing for Your Setup
+Spectra is built to be reverse-engineered and adapted when a sensor or remote does not fit default decoders or thresholds:
+
+- **Inspect Raw Pulse Timings (`FRAME:`):** When a 433.92 MHz remote or custom transmitter returns `PKT=0`, inspect the microsecond pulse lengths (`short_us`, `long_us`, `ratio`, and `bits`) in `decode_frame()` inside `stark_system_hud.py` to separate short/long pulses, spot repeating bit patterns, and tell fixed codes apart from rolling codes.
+- **Tune Thresholds & Cooldowns:** Adjust `ALERT_COOLDOWN_SEC`, the rolling baseline window (`maxlen=40`), or the `25.0`-edge floor in `SerialScannerWorker` (`stark_system_hud.py`) or `UniversalIotWorker` (`iot_hud_core.py`) to match noisy rooms, fast sensors, or slow actuators.
+- **Extend the Serial Protocol:** Add custom key-value tags or new `IOT:` / `TELEM:` fields in your `.ino` sketch (`115200` baud) and parse them in `parse_iot_line()` or `SerialScannerWorker` to drive custom HUD labels, colors, or local actions.
+- **Customize the HUD Layout & Tray Behavior:** Edit `IoTArcGauge` / `ArcGaugeWidget`, window size, default screen position, or click-through ghost mode in the PyQt6 HUD class to fit your workflow.
