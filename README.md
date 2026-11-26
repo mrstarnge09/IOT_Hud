@@ -1,4 +1,5 @@
 # IOT_Hud
+https://drive.google.com/file/d/1MA0CKXuCIhV0-Ev5V2gaeM-O7VS8VhCa/view?usp=sharing
 Spectra is a Windows 11 PyQt6 tactical HUD and universal Arduino IDE serial telemetry bridge for real-time 433.92 MHz RF analysis, signature locking, and plug-and-play IoT sensor monitoring on COM5 (115200 baud).
 
 # Spectra — Arduino IoT & PyQt6 Tactical HUD
